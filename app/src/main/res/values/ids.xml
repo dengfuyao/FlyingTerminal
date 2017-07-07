@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="rl_title" type="id"/>
+    <item name="image_icon" type="id"/>
+    <item name="ll_refer_station" type="id"/>
+    <item name="ll_refer_info" type="id"/>
+    <item name="ll_abnormal_card" type="id"/>
+    <item name="ll_other" type="id"/>
+    <item name="rl_tv_title" type="id"/>
+    <item name="et_main_card" type="id"/>
+    <item name="ll_news" type="id"/>
+    <item name="tv_control_num" type="id"/>
+    <item name="tv_control_celsius" type="id"/>
+    <item name="tv_control_tension" type="id"/>
+    <item name="ll_balance_card" type="id"/>
+</resources>

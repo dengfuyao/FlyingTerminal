@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.flyingogo.flyingterminal.activity.StationInforMationActivity">
+
+    <include layout="@layout/activity_title_info"/>
+<FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <com.amap.api.maps.MapView
+        android:layout_weight="0"
+        android:id="@+id/mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ImageView
+        android:id="@+id/bt_location"
+        android:layout_gravity="left|bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/btn_location"/>
+</FrameLayout>
+
+
+
+
+
+</LinearLayout>
