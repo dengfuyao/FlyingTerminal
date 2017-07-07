@@ -1,3 +1,4 @@
+/*
 package com.flyingogo.flyingterminal.adapter;
 
 import android.content.Context;
@@ -11,11 +12,15 @@ import com.flyingogo.flyingterminal.R;
 
 import java.util.List;
 
+import static android.R.id.list;
+
+*/
 /**
  * 作者：dfy on 7/7/2017 10:43
  * <p> 骑行记录adapter
  * 邮箱：dengfuyao@163.com
- */
+ *//*
+
 
 public class RideRecordAdapter extends BaseAdapter {
     private Context          context;
@@ -73,3 +78,4 @@ public class RideRecordAdapter extends BaseAdapter {
     }
 
 }
+*/

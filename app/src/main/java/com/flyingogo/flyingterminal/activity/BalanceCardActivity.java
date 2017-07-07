@@ -55,6 +55,7 @@ public class BalanceCardActivity extends BaseActivity {
                 break;
             case R.id.iv_cardinfo_rading:      //骑行记录
                 Toast.makeText(mContext, "骑行记录", Toast.LENGTH_SHORT).show();
+                toActivity(RideRecordActivity.class);  //跳转到查询页面
                 break;
         }
     }
