@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/topcolor"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <include layout="@layout/activity_title_info"/>
+
+    <TextView
+        android:text="南宁公共自行车充值系统"
+        android:textSize="40dp"
+        android:textColor="@color/backToColor"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+    <LinearLayout
+      android:layout_marginTop="10dp"
+        android:background="@drawable/white_bg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+                      android:layout_height="match_parent">
+            <ImageView
+                android:layout_margin="3dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/alipay600"
+                android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+            <TextView
+                android:textColor="@color/black"
+                android:text="请选择要充值的金额: "
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/alipay50"
+                    android:layout_marginTop="20dp"
+                    style="@style/RechangeButtonStytle"
+                    android:text="充值50元"
+                />
+                <Button
+                    android:id="@+id/alipay100"
+                    style="@style/RechangeButtonStytle"
+                    android:text="充值100元"
+                />
+                <Button
+                    android:id="@+id/alipay200"
+                    style="@style/RechangeButtonStytle"
+                    android:text="充值200元"
+                />
+                <Button
+                    android:id="@+id/alipay300"
+                    style="@style/RechangeButtonStytle"
+                    android:text="充值300元"
+                />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+        <View
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="1dp"
+              android:layout_height="match_parent"
+            android:background="@color/topcolor"/>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_margin="3dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/weichat600x157"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:textColor="@color/black"
+                android:text="请选择要充值的金额: "
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/weichatpay50"
+                android:layout_marginTop="20dp"
+                style="@style/RechangeButtonStytle"
+                android:text="充值50元"
+            />
+            <Button
+                android:id="@+id/weichatpay100"
+                style="@style/RechangeButtonStytle"
+                android:text="充值100元"
+            />
+            <Button
+                android:id="@+id/weichatpay200"
+                style="@style/RechangeButtonStytle"
+                android:text="充值200元"
+            />
+            <Button
+                android:id="@+id/weichatpay300"
+                style="@style/RechangeButtonStytle"
+                android:text="充值300元"
+            />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

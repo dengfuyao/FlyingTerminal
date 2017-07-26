@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+
+            >
+
+    <Button
+        android:id="@+id/rechange_50"
+        style="@style/RechangeButtonStytle"
+        android:text="充值50元"
+       />
+    <Button
+        android:id="@+id/rechange_100"
+        style="@style/RechangeButtonStytle"
+        android:text="充值100元"
+     />
+    <Button
+        android:id="@+id/rechange_200"
+        style="@style/RechangeButtonStytle"
+        android:text="充值200元"
+        />
+    <Button
+        android:id="@+id/rechange_500"
+        style="@style/RechangeButtonStytle"
+        android:text="充值500元"
+        />
+
+</LinearLayout>

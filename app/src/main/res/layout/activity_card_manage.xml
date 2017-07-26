@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+              android:orientation="vertical">
+    <include layout="@layout/activity_title_info"
+             android:layout_width="match_parent"
+             android:layout_height="50dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:padding="11dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="3dp"
+            android:text="最近一次状态信息"
+            android:textColor="@color/backToColor"
+            android:textSize="30sp"/>
+        <TextView
+            android:id="@+id/borrow_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7-7-2017 18:30"
+            android:textColor="@color/backToColor"
+            android:textSize="25sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="骑行状态 : "
+                    android:textColor="@color/graybackgroud"
+                    android:textSize="17sp"/>
+                <TextView
+                    android:gravity="center_vertical"
+                    android:id="@+id/card_staus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text=""/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:padding="2dp"
+                    android:text="车辆编号 ："
+                    android:textColor="@color/graybackgroud"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:id="@+id/bikeNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="7dp"
+                    android:gravity="left"
+                    android:padding="2dp"
+                    android:text="无"
+                    android:textColor="@color/backToColor"
+                    android:textSize="17sp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.1"
+                    android:padding="2dp"
+                    android:text="最后借车点："
+                    android:textColor="@color/graybackgroud"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:id="@+id/tv_latest_borrow_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="7dp"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    android:padding="2dp"
+                    android:text="无"
+                    android:textColor="@color/backToColor"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:padding="2dp"
+                    android:text="还车地区："
+                    android:textColor="@color/graybackgroud"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:id="@+id/tv_latest_return_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="7dp"
+                    android:gravity="left"
+                    android:padding="2dp"
+                    android:text="无"
+                    android:textColor="@color/backToColor"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="2dp"
+                    android:text="出发锁住编号："
+                    android:textColor="@color/graybackgroud"
+                    android:textSize="17sp"/>
+                <TextView
+                    android:id="@+id/tv_riderecord_starNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="7dp"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    android:padding="2dp"
+                    android:text="无"
+                    android:textColor="@color/graybackgroud"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:padding="2dp"
+                    android:text="还车锁柱编号："
+                    android:textColor="@color/graybackgroud"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:id="@+id/tv_riderecord_endNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="7dp"
+                    android:gravity="left"
+                    android:padding="2dp"
+                    android:text="无"
+                    android:textColor="@color/graybackgroud"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="2dp"
+                    android:text="骑行时间："
+                    android:textColor="@color/graybackgroud"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tv_riderecord_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="7dp"
+                    android:gravity="right"
+                    android:padding="2dp"
+                    android:text="0.0"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="7dp"
+                    android:gravity="left"
+                    android:padding="2dp"
+                    android:text="分钟"
+                    android:textColor="@color/backToColor"
+                    android:textSize="17sp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:padding="2dp"
+                    android:text="消费金额 ："
+                    android:textColor="@color/graybackgroud"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:id="@+id/tv_riderecord_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="7dp"
+                    android:gravity="left"
+                    android:padding="2dp"
+                    android:text="0.0"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="7dp"
+                    android:gravity="left"
+                    android:padding="2dp"
+                    android:text="元"
+                    android:textColor="@color/backToColor"
+                    android:textSize="17sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <Button
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:text="报修"
+            android:id="@+id/bt_repairs"
+            android:layout_width="200dp"
+            android:background="@drawable/select_bt_register_bg"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

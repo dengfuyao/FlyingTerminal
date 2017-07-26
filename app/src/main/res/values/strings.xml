@@ -1,3 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FlyingTerminal</string>
+
+    <string name="hello">Hello World, ComAssistantActivity!</string>
+    <string name="app_name">终端机</string>
+    <string name="current_card_no">卡号 : </string>
+    <string name="current_balance">当前余额:</string>
+    <string name="cash_pledge">押金:</string>
+
 </resources>

@@ -5,9 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.flyingogo.flyingterminal.weiget.LabelView;
+import com.flyingogo.flyingterminal.module.RecordBean;
+import com.flyingogo.flyingterminal.weiget.RecordsView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,32 +18,29 @@ import java.util.List;
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
     private Context
-            mContext;
-    private List<String> mMyViews;
+                                                   mContext;
+    private List<RecordBean.DataBean.DataListBean> mDatas;
 
-    public  MyRecyclerViewAdapter(Context context) {
+    public  MyRecyclerViewAdapter(Context context,List<RecordBean.DataBean.DataListBean> dataListBeen) {
         mContext = context;
-        mMyViews = new ArrayList<>();
-        for (int i =0 ;i<4 ;i++){
-            String data = "点我";
-            mMyViews.add(data);
-        }
+        mDatas = dataListBeen;
+
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(new LabelView(mContext));
+        return new ViewHolder(new RecordsView(mContext));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        ((LabelView)viewHolder.itemView).bindView(mMyViews.get(position),position);
+        ((RecordsView)viewHolder.itemView).bindView(mDatas.get(position),position);
     }
 
     @Override
     public int getItemCount() {
-        return mMyViews.size();
+        return mDatas.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

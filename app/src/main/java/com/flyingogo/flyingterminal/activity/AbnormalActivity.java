@@ -1,12 +1,17 @@
 package com.flyingogo.flyingterminal.activity;
 
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.flyingogo.flyingterminal.R;
 import com.flyingogo.flyingterminal.base.BaseActivity;
+import com.flyingogo.flyingterminal.contants.Contants;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,6 +33,8 @@ public class AbnormalActivity extends BaseActivity {
     RelativeLayout mActivityTitle;
     @BindView(R.id.et_abnnormal_card)
     EditText       mEtAbnnormalCard;
+    @BindView(R.id.bt_query)
+    Button         mQuery;
 
     @Override
     protected int getResLayoutID() {
@@ -40,9 +47,23 @@ public class AbnormalActivity extends BaseActivity {
 
     }
 
+    @OnClick({R.id.bt_query,R.id.right})
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.right:
+                finish();
+                break;
 
-    @OnClick(R.id.right)
-    public void onClick() {
-        finish();
+            case R.id.bt_query:
+                String abnormal_card_no = mEtAbnnormalCard.getText().toString().trim();
+                if (TextUtils.isEmpty(abnormal_card_no)){
+                    Toast.makeText(mContext, "对不起,您输入的卡号有误!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                toActivity(CardManageActivity.class, Contants.CARD_NO,abnormal_card_no);  //跳转到卡管理页面,附带卡号
+                break;
+            default:
+                break;
+        }
     }
 }

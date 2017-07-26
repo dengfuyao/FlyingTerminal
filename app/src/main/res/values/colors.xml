@@ -19,7 +19,7 @@
 <color name="backgruodcolor">#fff5d191</color>
 <color name="black">#ff0d0c0c</color>
 <color name="bluelight">#ff9faaed</color>
-<color name="bottomtitlecolor">#ff33cb98</color>
+<color name="bottomtitlecolor">#02c8c8</color>
 <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
 <color name="bright_foreground_disabled_material_light">#80000000</color>
 <color name="bright_foreground_inverse_material_dark">@color/bright_foreground_material_light</color>
@@ -71,7 +71,7 @@
 <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
 <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
 <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
-<color name="topcolor">#ff2eb789</color>
+<color name="topcolor">#02c8c8</color>
 <color name="transparent">#ffe3f5f5</color>
 <color name="white">#fff7f5f5</color>
 <color name="yellow">#fee1cd3b</color>

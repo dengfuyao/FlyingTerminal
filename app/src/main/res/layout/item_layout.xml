@@ -1,16 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_centerInParent="true"
+             android:layout_marginRight="15dp"
+             android:layout_marginTop="8dp"
+             android:layout_marginLeft="15dp"
+             android:layout_height="wrap_content"
+>
+<LinearLayout
               android:orientation="vertical"
-              android:layout_width="300dp"
+              android:layout_width="match_parent"
               android:layout_centerInParent="true"
-              android:layout_height="300dp">
-    <TextView
-        android:gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:background="#000fff"
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+                android:layout_marginRight="15dp"
+              android:layout_marginTop="8dp"
+              android:layout_marginLeft="15dp"
+              android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/tv_ride_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="2016-12-21 08:41"
+        android:textColor="@color/backToColor"
+        android:textSize="21sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="2dp"
+                android:text="借车地区："
+                android:textColor="@color/graybackgroud"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tv_riderecord_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="7dp"
+                android:padding="2dp"
+                android:text="中南海"
+                android:textColor="@color/backToColor"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:padding="2dp"
+                android:text="还车地区："
+                android:textColor="@color/graybackgroud"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tv_riderecord_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="7dp"
+                android:gravity="left"
+                android:padding="2dp"
+                android:text="地中海"
+                android:textColor="@color/backToColor"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="2dp"
+                android:text="出发锁住编号："
+                android:textColor="@color/graybackgroud"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tv_riderecord_starNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="7dp"
+                android:gravity="left"
+                android:padding="2dp"
+                android:text="54221555"
+                android:textColor="@color/graybackgroud"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:padding="2dp"
+            android:text="还车锁住编号："
+            android:textColor="@color/graybackgroud"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_riderecord_endNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="7dp"
+            android:gravity="left"
+            android:padding="2dp"
+            android:text="54221555"
+            android:textColor="@color/graybackgroud"
+            android:textSize="17sp" />
+       </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="2dp"
+                android:text="骑行时间："
+                android:textColor="@color/graybackgroud"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tv_riderecord_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="7dp"
+                android:gravity="right"
+                android:padding="2dp"
+                android:text="0.5"
+                android:textColor="@color/colorPrimary"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="7dp"
+                android:gravity="left"
+                android:padding="2dp"
+                android:text="小时"
+                android:textColor="@color/backToColor"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:padding="2dp"
+                android:text="花费："
+                android:textColor="@color/graybackgroud"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_riderecord_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="7dp"
+                android:gravity="left"
+                android:padding="2dp"
+                android:text="1.0"
+                android:textColor="@color/colorAccent"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="7dp"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:padding="2dp"
+                android:text="元"
+                android:textColor="@color/backToColor"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+        <View
+            android:layout_marginTop="5dp"
+            android:background="@color/colorAccent"
+            android:layout_width="match_parent" android:layout_height="1dp"
+              />
 </LinearLayout>
+</FrameLayout>

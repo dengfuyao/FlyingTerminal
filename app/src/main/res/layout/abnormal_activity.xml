@@ -23,19 +23,33 @@
 
         <EditText
             android:hint="请输入您的卡号:"
+            android:textColorHint="@color/bluelight"
             android:id="@+id/et_abnnormal_card"
+            android:paddingLeft="5dp"
             android:layout_width="100dp"
-            android:layout_height="53dp"
+            android:layout_height="wrap_content"
             android:layout_marginRight="160dp"
             android:layout_weight="1"
-            android:background="@color/bluelight"
             android:gravity="center_vertical"
             android:inputType="number"
             android:lines="1"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:maxLength="16"
             android:textColor="@color/colorAccent" />
 
+
+
     </LinearLayout>
+    <Button
+        android:layout_marginTop="20.0dip"
+        android:background="@drawable/select_bt_register_bg"
+        android:id="@+id/bt_query"
+        android:text="查询"
+        android:textSize="18.0sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="200.0dip"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

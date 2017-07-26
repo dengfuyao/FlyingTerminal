@@ -23,6 +23,12 @@ public class Myplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initOkHttpUtils();
+
+    }
+
+    private void initOkHttpUtils() {
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
 //                .addInterceptor(new LoggerInterceptor("TAG"))
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
@@ -31,7 +37,14 @@ public class Myplication extends Application {
                 .build();
 
         OkHttpUtils.initClient(okHttpClient);
-
+    /*    CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .addInterceptor(new LoggerInterceptor("TAG", true))
+                //其他配置,自动保存相关的cookie信息
+                .cookieJar(cookieJar)
+                .addInterceptor(new MyLogInterceptor())
+                .build();
+        OkHttpUtils.initClient(okHttpClient);*/
     }
 
     private static final int      REQUEST_EXTERNAL_STORAGE = 0;

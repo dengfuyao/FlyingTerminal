@@ -6,6 +6,13 @@
               android:orientation="vertical">
 
     <include layout="@layout/activity_title_info" />
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/iv_cardinfo_ramaining" />
+                android:src="@drawable/iv_cardinfo_ramaining"
+              />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,6 +42,32 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="查询余额"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exception_handling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@mipmap/dialog_refer_info"
+               />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="异常处理"
                 android:textSize="25sp" />
 
         </LinearLayout>
@@ -63,7 +97,64 @@
 
         </LinearLayout>
 
+
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="30.0dip">
+        <TextView
+            android:id="@id/rl_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80.0dip"
+            android:drawableLeft="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:text="当前操作的卡号："
+            android:textSize="15.0sp"/>
+        <EditText android:id="@id/et_main_card"
+                  android:layout_width="wrap_content"
+                  android:layout_height="50.0dip"
+                  android:layout_alignBottom="@id/rl_tv_title"
+                  android:layout_marginRight="80.0dip"
+                  android:layout_toRightOf="@id/rl_tv_title"
+                  android:gravity="center"
+                  android:inputType="number"
+                  android:hint="请输入查询的卡号"
+                  android:lines="1"
+                  android:maxLength="11"
+                  android:textColor="@color/backToColor"/>
+    </RelativeLayout>
+    <Button
+
+        android:layout_marginTop="10.0dip"
+        android:background="@drawable/select_bt_register_bg"
+        android:id="@+id/login"
+        android:text="确认"
+        android:textSize="18.0sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="200.0dip"
+        android:layout_height="wrap_content"/>
+
+        <Button
+            android:visibility="gone"
+            android:layout_marginTop="10.0dip"
+            android:background="@drawable/select_bt_register_bg"
+            android:id="@+id/loginOut"
+            android:text="注销卡号"
+            android:textSize="18.0sp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="200.0dip"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </LinearLayout>

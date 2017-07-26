@@ -13,4 +13,5 @@
     <item name="tv_control_celsius" type="id"/>
     <item name="tv_control_tension" type="id"/>
     <item name="ll_balance_card" type="id"/>
+    <item name="ll_rechange_centre" type="id"/>
 </resources>
