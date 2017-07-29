@@ -2,7 +2,7 @@
 <selector
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-          android:drawable="@drawable/card_message_pre" />
+          android:drawable="@drawable/card_message_nor_xxp" />
     <item android:state_pressed="false"
-          android:drawable="@drawable/card_message" />
+          android:drawable="@drawable/card_message_pre_xxp" />
 </selector>

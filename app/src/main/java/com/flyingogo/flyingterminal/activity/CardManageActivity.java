@@ -20,7 +20,7 @@ import com.flyingogo.flyingterminal.module.ExceptionBean;
 import com.flyingogo.flyingterminal.module.RecordBean;
 import com.flyingogo.flyingterminal.utils.ThreadUtils;
 import com.flyingogo.flyingterminal.utils.URLUtils;
-import com.flyingogo.flyingterminal.weiget.CardManageDialog;
+import com.flyingogo.flyingterminal.dialog.CardManageDialog;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;

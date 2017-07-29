@@ -3,11 +3,17 @@
               android:id="@id/activity_main"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:orientation="horizontal">
+              android:background="@color/bottomtitlecolor"
+              android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_weight="1"
+        android:orientation="horizontal">
+
     <LinearLayout android:layout_width="0.0dip"
                   android:layout_height="fill_parent"
                   android:layout_weight="2.0"
-                  android:background="@color/bottomtitlecolor"
+
                   android:orientation="vertical">
         <RelativeLayout
             android:id="@id/rl_title"
@@ -22,6 +28,14 @@
                 android:padding="3.0dip"
                 android:src="@drawable/title_bar"/>
         </RelativeLayout>
+        <Button
+            android:visibility="invisible"
+            android:text="退出系统"
+            android:background="@drawable/bt_rechange_bg_select"
+            android:layout_marginTop="30dp"
+            android:id="@+id/logout"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"/>
         <LinearLayout
             android:orientation="vertical"
             android:gravity="center"
@@ -168,13 +182,7 @@
                     />
             </LinearLayout>
         </LinearLayout>
-            <Button
-                android:text="退出系统"
-                android:background="@drawable/bt_rechange_bg_select"
-                android:layout_marginTop="30dp"
-                android:id="@+id/logout"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"/>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -269,5 +277,12 @@
                 android:src="@drawable/notification"/>
         </LinearLayout>
     </LinearLayout>
-
+    </LinearLayout>
+    <TextView
+        android:gravity="center"
+        android:textSize="40sp"
+        android:id="@+id/text_time"
+        android:layout_weight="0"
+        android:layout_width="match_parent"
+              android:layout_height="100dp"/>
 </LinearLayout>

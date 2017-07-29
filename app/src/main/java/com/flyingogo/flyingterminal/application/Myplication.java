@@ -3,7 +3,9 @@ package com.flyingogo.flyingterminal.application;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
 
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -18,6 +20,15 @@ import okhttp3.OkHttpClient;
  * 邮箱：dengfuyao@163.com
  */
 public class Myplication extends Application {
+    private static Myplication myApplication;
+    public static Myplication getInstance() {
+        return myApplication;
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
 
     @Override
@@ -37,14 +48,7 @@ public class Myplication extends Application {
                 .build();
 
         OkHttpUtils.initClient(okHttpClient);
-    /*    CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-//                .addInterceptor(new LoggerInterceptor("TAG", true))
-                //其他配置,自动保存相关的cookie信息
-                .cookieJar(cookieJar)
-                .addInterceptor(new MyLogInterceptor())
-                .build();
-        OkHttpUtils.initClient(okHttpClient);*/
+
     }
 
     private static final int      REQUEST_EXTERNAL_STORAGE = 0;

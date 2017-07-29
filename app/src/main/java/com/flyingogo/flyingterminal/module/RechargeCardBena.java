@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 作者：dfy on 25/7/2017 17:56
- * <p>
+ * <p> 微信充值请求二维码;
  * 邮箱：dengfuyao@163.com
  */
 
@@ -22,22 +22,21 @@ public class RechargeCardBena implements Serializable{
 
     public List<DataBean> data;
 
-    public static class DataBean {
+    public  class DataBean implements Serializable {
         /**
          * state : 1001
          * message : 预订单生成
          */
-
         public ResultTypeBean resultType;
-        public String orderid;
+        public String orderid;   //订单编号
         public String cardNo;
         public String rechargeAmount;
         public String imgurl;
         public String codeUrl;
 
-        public static class ResultTypeBean {
-            public int    state;
+        public class ResultTypeBean  implements Serializable {
             public String message;
+            public int    state;
         }
     }
 }

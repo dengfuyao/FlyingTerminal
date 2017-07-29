@@ -43,7 +43,24 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         ;
      //mUrl = "http://www.nnggzxc.com/upload/vido/ridelybike.mp4";
      mUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.ridelybike);
+        setAudio();
         playerVideo();
+    }
+
+    private void setAudio() {
+
+
+        AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+
+
+                 //设置静音模式;
+                   audioManager.setStreamMute(AudioManager.STREAM_MUSIC , true);
+
+
+                  //启动声音调节默认有声音;
+                    //audioManager.setStreamMute(AudioManager.STREAM_MUSIC , false);
+
+
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -86,6 +103,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
                         public void onPrepared(MediaPlayer mp) {
 
                             mMediaPlayer.setDisplay(mHolder);
+
                             mMediaPlayer.start();
                         }
                     });

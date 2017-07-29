@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.flyingogo.flyingterminal.activity.VideoPlayerActivity;
+import com.flyingogo.flyingterminal.contants.Contants;
 import com.flyingogo.flyingterminal.utils.NavigationBarHelp;
 
 import java.io.Serializable;
@@ -64,7 +65,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onResume();
         Log.e(TAG, "onResume: 开始任务" );
         NavigationBarHelp.hideNavigation(BaseActivity.this);
-        handler.postDelayed(runnable, 10000* 6);
+        handler.postDelayed(runnable, 5000* 60);
     }
 
     @Override
@@ -90,7 +91,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-
             Log.e(TAG, "dispatchTouchEvent: 清除任务");
            handler.removeCallbacks(runnable);
             mIstask = false;
@@ -112,7 +112,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
             case MotionEvent.ACTION_UP: { // 手指离开屏幕，发送延迟消息 ，5秒后执行
                 Log.e(TAG, "onTouchEvent: 开始任务" );
-                handler.postDelayed(runnable, 10000 * 6);
+                handler.postDelayed(runnable, 5000 * 60);
                 break;
             }
             case MotionEvent.ACTION_MOVE:{
@@ -138,8 +138,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void go2Activity(Class<?> activity, Serializable serializable,String key){
+    public void go2Activity(Class<?> activity, Serializable serializable, String key,int type){
         Intent intent = new Intent(mContext,activity);
+        intent.putExtra(Contants.TYPE_Pay,type);
         intent.putExtra(key,serializable);
         startActivity(intent);
 

@@ -2,15 +2,20 @@ package com.flyingogo.flyingterminal.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.flyingogo.flyingterminal.R;
 import com.flyingogo.flyingterminal.base.BaseActivity;
 import com.flyingogo.flyingterminal.contants.Contants;
 import com.flyingogo.flyingterminal.fragment.RechargeFragment;
+import com.flyingogo.flyingterminal.module.AliPayRechargeBean;
 import com.flyingogo.flyingterminal.module.RechargeCardBena;
 import com.flyingogo.flyingterminal.utils.URLUtils;
 import com.google.android.gms.appindexing.Action;
@@ -22,6 +27,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 
@@ -35,24 +41,28 @@ import okhttp3.Call;
 
 public class RechargeCenterActivity extends BaseActivity {
     @BindView(R.id.alipay50)
-    Button   mAlipay50;
+    Button         mAlipay50;
     @BindView(R.id.alipay100)
-    Button   mAlipay100;
+    Button         mAlipay100;
     @BindView(R.id.alipay200)
-    Button   mAlipay200;
+    Button         mAlipay200;
     @BindView(R.id.alipay300)
-    Button   mAlipay300;
+    Button         mAlipay300;
     @BindView(R.id.weichatpay50)
-    Button   mWeichatpay50;
+    Button         mWeichatpay50;
     @BindView(R.id.weichatpay100)
-    Button   mWeichatpay100;
+    Button         mWeichatpay100;
     @BindView(R.id.weichatpay200)
-    Button   mWeichatpay200;
+    Button         mWeichatpay200;
     @BindView(R.id.weichatpay300)
-    Button   mWeichatpay300;
+    Button         mWeichatpay300;
     @BindView(R.id.right)
-    TextView mRight;
-    private String              mCardUid = "5970100007";
+    TextView       mRight;
+    @BindView(R.id.progreess_bar)
+    ProgressBar    mProgreessBar;
+    @BindView(R.id.rl_progreess)
+    RelativeLayout mRlProgreess;
+    private String mCardUid = "5970100007";
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -81,58 +91,89 @@ public class RechargeCenterActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.right:
                 finish();
+
                 break;
             case R.id.alipay50:
-                requestWeiChatPost(mCardUid, 50, 1);
+                requesRecharge(getAliPayUrl(mCardUid,Contants.TYPE_ALI,0.01),Contants.TYPE_ALI);
                 break;
             case R.id.alipay100:
+                requesRecharge(getAliPayUrl(mCardUid,Contants.TYPE_ALI,100),Contants.TYPE_ALI);
                 break;
             case R.id.alipay200:
+                requesRecharge(getAliPayUrl(mCardUid,Contants.TYPE_ALI,200),Contants.TYPE_ALI);
                 break;
             case R.id.alipay300:
+                requesRecharge(getAliPayUrl(mCardUid,Contants.TYPE_ALI,300),Contants.TYPE_ALI);
                 break;
             case R.id.weichatpay50:
+
+                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT,0.01), Contants.TYPE_WECHAT);
                 break;
             case R.id.weichatpay100:
+                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT,100), Contants.TYPE_WECHAT);
                 break;
             case R.id.weichatpay200:
+                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT,200), Contants.TYPE_WECHAT);
                 break;
             case R.id.weichatpay300:
+                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT,300), Contants.TYPE_WECHAT);
                 break;
         }
     }
 
     private static final String TAG = "RechargeCenterActivity";
 
-    private void requestWeiChatPost(String cardUid, int money, int type) {
+    private String getWeichatUrl(String cardUid,  int type,double money){
+        return URLUtils.getWeiChatRechargeURL(cardUid, money, type);
+    }
 
-        String uri = URLUtils.getWeiChatRechargeURL(cardUid, money, type);
-        Log.e(TAG, "requestWeiChatPost: uri==" + uri);
-        OkHttpUtils.get().url(uri).build().execute(new StringCallback() {
+    private String getAliPayUrl(String cardUid,  int type,double money){
+        return URLUtils.getAliPayRechargeURL(cardUid, money, type);
+    }
+    private void requesRecharge(String url, final int type) {
+            mRlProgreess.setVisibility(View.VISIBLE);
+        Log.e(TAG, "requesRecharge: uri==" + url);
+        OkHttpUtils.get().url(url).build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                Log.e(TAG, "onError:  = "+e.getMessage() );
+                Log.e(TAG, "onError:  = " + e.getMessage());
+                mRlProgreess.setVisibility(View.GONE);
+                toActivity(RechargeFragment.class);
+                finish();
+                Toast.makeText(mContext, "网络错误,请重新操作!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onResponse(String response, int id) {
-                Log.e(TAG, "onResponse:  = "+response.toString() );
+                Log.e(TAG, "onResponse:  = " + response.toString());
                 Gson gson = new Gson();
-                RechargeCardBena rechargeCardBena = gson.fromJson(response.toString(), RechargeCardBena.class);
-                //List<RechargeCardBena.DataBean> data = rechargeCardBena.data;
+                switch (type){
+                    case Contants.TYPE_ALI:
+                        AliPayRechargeBean aliPayRechargeBean = gson.fromJson(response.toString(), AliPayRechargeBean.class);
+                        go2Activity(RechargeFragment.class,aliPayRechargeBean,Contants.ALI_REC_BEN,type);
+                        finish();
 
-                if (rechargeCardBena!= null){
+                        break;
+                    case  Contants.TYPE_WECHAT:
+                        final RechargeCardBena rechargeCardBena = gson.fromJson(response.toString(), RechargeCardBena.class);
+                        //List<RechargeCardBena.DataBean> data = rechargeCardBena.data;
+                        if (rechargeCardBena != null) {
+                                    go2Activity(RechargeFragment.class,rechargeCardBena,Contants.CORD_RECHARGE_BEAN,type);
+                                    finish();
+                                }
 
-                    go2Activity(RechargeFragment.class,rechargeCardBena,Contants.CORD_RECHARGE_BEAN);
-                    finish();
+                        break;
                 }
 
-            }
+
+                }
+
         });
     }
 
    /*
 */
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -150,4 +191,10 @@ public class RechargeCenterActivity extends BaseActivity {
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

@@ -47,4 +47,14 @@
 
     </style>
 
+    <style name="load_dialog" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground"> @color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
 </resources>

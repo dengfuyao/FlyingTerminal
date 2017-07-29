@@ -5,6 +5,17 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <include layout="@layout/activity_title_info"/>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_progreess"
+        android:gravity="center"
+        android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/progreess_bar"
+            android:layout_width="300dp"
+                     android:layout_height="300dp"/>
+    </RelativeLayout>
 
     <TextView
         android:text="南宁公共自行车充值系统"
@@ -65,9 +76,6 @@
                     android:text="充值300元"
                 />
             </LinearLayout>
-
-
-
 
         </LinearLayout>
         <View

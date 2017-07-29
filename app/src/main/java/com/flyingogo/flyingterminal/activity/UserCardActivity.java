@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.flyingogo.flyingterminal.R;
 import com.flyingogo.flyingterminal.base.BaseActivity;
 import com.flyingogo.flyingterminal.contants.Contants;
-import com.flyingogo.flyingterminal.weiget.CardInfoDialog;
+import com.flyingogo.flyingterminal.dialog.CardInfoDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

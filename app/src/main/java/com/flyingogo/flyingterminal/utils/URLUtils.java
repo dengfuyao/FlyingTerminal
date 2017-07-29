@@ -11,8 +11,8 @@ public class URLUtils {
 
     //http://192.168.31.76:8081/fjbike/bike/queryBikeStationByCoord.do?longitude=&latitude=&distance=100&lonDistance=1000
     //http://
-    static String Url = "http://123.207.252.36:8280/fjbike/";  //主地址;
-
+ static String Url = "http://123.207.25.39:8280/fjbike/";  //外网主地址;
+    //static String Url = "http://192.168.31.16:8080/fjbike/";
     /**
      * 异常卡处理
      *
@@ -117,7 +117,7 @@ public class URLUtils {
      * @param rechargeType   充值类型  1.APP充值, 2.pc 充值  3.管理系统
      * @return
      */
-    public static String getWeiChatRechargeURL(String card_no, int rechangeAmpunt, int rechargeType) {
+    public static String getWeiChatRechargeURL(String card_no, double rechangeAmpunt, int rechargeType) {
         String url = Url + "weChatPayment.do?cardNo="
                 + card_no
                 + "&rechargeType=" + rechargeType
@@ -125,7 +125,21 @@ public class URLUtils {
         return url;
 
     }
+   // http://123.207.25.39:8280/fjbike/alipayPayment.do?cardNo=5970100007&rechargeType=1&rechargeAmount=0.01
 
+    public static String getAliPayRechargeURL(String card_no, double rechangeAmpunt, int rechargeType){
+        String url = Url+"alipayPayment.do?cardNo="
+                + card_no
+                +"&rechargeType="+rechargeType
+                +"&rechargeAmount="+rechangeAmpunt;
+        return url;
+    }
+
+    //http://123.207.25.39:8280/fjbike/weChatPayment/payIsSuccess.do?indentId=2017072705260541297
+
+    public static String getWeCharResultUrl(String indentId){
+        return Url+"weChatPayment/payIsSuccess.do?indentId="+indentId;
+    }
 
 
 }

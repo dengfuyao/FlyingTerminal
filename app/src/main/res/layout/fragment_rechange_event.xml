@@ -1,63 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:background="@color/topcolor"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <include
-
-        layout="@layout/activity_title_info"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/topcolor"
+                android:orientation="vertical">
     <LinearLayout
-        android:layout_below="@id/activity_title"
-        android:id="@+id/rechange_title"
-        android:layout_alignParentTop="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:id="@+id/include"
         android:layout_width="match_parent"
-                  android:layout_height="80dp">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
         <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/title_bar"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rechange_title"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        android:layout_below="@id/include"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:src="@drawable/logo"
-            android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"/>
+            android:src="@drawable/logo"/>
         <TextView
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/backToColor"
-            android:textSize="40dp"
-            android:text="南宁公共自行车充值系统"
+
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="南宁公共自行车充值系统"
+            android:textColor="@color/backToColor"
+            android:textSize="40dp"/>
 
     </LinearLayout>
     <TextView
+
         android:id="@+id/service_tel"
-        android:layout_marginRight="10dp"
-        android:gravity="center"
-        android:background="@drawable/text_backgruodcolor"
-        android:layout_alignParentRight="true"
-        android:textSize="30dp"
-        android:text="客服电话: 0755-8888666"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"/>
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/text_backgruodcolor"
+        android:gravity="center"
+        android:text="客服电话: 0755-8888666"
+        android:textSize="30dp"/>
 
     <LinearLayout
         android:id="@+id/rechange_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/rechange_title"
         android:layout_margin="15dp"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <TextView
-            style="@style/TextSmallStyle"
-            android:text="余额:"
-         />
+            <TextView
+                style="@style/TextSmallStyle"
+                android:text="余额:"
+            />
             <TextView
                 android:id="@+id/balance"
                 style="@style/TextSmallStyle"
-            android:text="0元"
+                android:text="0元"
             />
         </LinearLayout>
         <LinearLayout
@@ -75,14 +86,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center">
             <TextView
-                android:textColor="#fff000"
-                android:textSize="22sp"
                 style="@style/TextSmallStyle"
                 android:text="充值业务:"
+                android:textColor="#fff000"
+                android:textSize="22sp"
             />
             <TextView
                 android:id="@+id/recharge_type"
@@ -91,16 +102,18 @@
             />
         </LinearLayout>
         <LinearLayout
-            android:gravity="center"
+            android:id="@+id/ll_qr"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center">
             <ImageView
-                android:id="@+id/qr_code"
-                android:layout_margin="10dp"
-                android:layout_width="300dp"
-                       android:layout_height="300dp"/>
-            <TextView
 
+                android:id="@+id/qr_code"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_margin="20dp"/>
+            <TextView
                 style="@style/TextSmallStyle"
                 android:text="应付金额:"
             />
@@ -115,14 +128,34 @@
 
     <Button
         android:id="@+id/bt_abondon_rechange"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:textSize="22sp"
-        android:text="放弃充值"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"
         android:background="@drawable/bt_rechange_redbg_select"
-        android:layout_width="wrap_content"
-              android:layout_height="wrap_content"/>
+        android:text="放弃充值"
+        android:textSize="22sp"/>
+    <LinearLayout
 
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="35dp"
+            android:layout_height="wrap_content"
+            android:text="剩余操作时间: "/>
+        <com.flyingogo.flyingterminal.weiget.CountDownView
+            android:textSize="35dp"
+            android:id="@+id/count_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -26,5 +26,10 @@ public interface Contants {
     String CARD_NO = "card_no";
 
     String CORD_RECHARGE_BEAN = "cord_recharge_bean";
+    String ALI_REC_BEN        = "ali_rec_ben";
+    String TYPE_Pay = "type_pay";
+
+    int TYPE_ALI    = 2;
+    int TYPE_WECHAT = 1;
 }
 

@@ -1,4 +1,4 @@
-package com.flyingogo.flyingterminal.weiget;
+package com.flyingogo.flyingterminal.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
