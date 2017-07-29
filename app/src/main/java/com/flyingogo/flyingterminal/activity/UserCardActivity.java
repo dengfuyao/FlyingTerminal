@@ -1,9 +1,10 @@
 package com.flyingogo.flyingterminal.activity;
 
-import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,7 +22,6 @@ import com.flyingogo.flyingterminal.contants.Contants;
 import com.flyingogo.flyingterminal.dialog.CardInfoDialog;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -53,6 +53,8 @@ public class UserCardActivity extends BaseActivity {
     LinearLayout   mLlExceptionHandling;
     @BindView(R.id.loginOut)
     Button         mLoginOut;
+    @BindView(R.id.rl_gakey)
+    RelativeLayout mRlGakey;
     private boolean isLogin = false;  //用来记录是否有插入此卡;
     private static String mCard_no;
 
@@ -61,13 +63,35 @@ public class UserCardActivity extends BaseActivity {
         return R.layout.balance_card_activity;
     }
 
-    @OnClick({R.id.right,R.id.loginOut, R.id.iv_cardinfo_ramaining, R.id.ll_exception_handling, R.id.iv_cardinfo_rading, R.id.login})
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.e("onTouchEvent", "onTouchEvent: 键盘失去焦点" );
+        mEtMainCard.clearFocus();  //
+        return true;
+    }
+
+    @Override
+    protected void onInit() {
+
+        super.onInit();
+    }
+   /* public static void toggleSoftInput(Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.RESULT_UNCHANGED_HIDDEN); }
+*/
+
+    @OnClick({R.id.right, R.id.loginOut, R.id.iv_cardinfo_ramaining, R.id.ll_exception_handling, R.id.iv_cardinfo_rading, R.id.login})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.right:   //返回按钮
                 finish();
                 break;
-            case R.id.loginOut:   //返回按钮
+            case R.id.loginOut:   //注销按钮
+                isLogin =false;
+                    hideView(mLoginOut);
+                mEtMainCard.setText("");
+                showView(mRlGakey,mLogin);
+                showView(mLogin);
 
                 break;
             case R.id.iv_cardinfo_ramaining:   //余额查询
@@ -100,8 +124,8 @@ public class UserCardActivity extends BaseActivity {
                 }
 
                 isLogin = true;
-                hideView(mEtMainCard);
-                hideView(mLogin);
+                hideView(mRlGakey,mLogin);  //隐藏输入框;
+                showView(mLoginOut);    //显示注按钮
 
                 break;
             case R.id.ll_exception_handling:
@@ -126,19 +150,18 @@ public class UserCardActivity extends BaseActivity {
         dialog.show();
     }
 
-    private void hideView(View view) {
-        view.setVisibility(View.GONE);
+    private void hideView(View ...view) {
+
+        for (View v : view){
+            v.setVisibility(View.GONE);
+        }
     }
 
-    private void showView(View view) {
-        view.setVisibility(View.VISIBLE);
+    private void showView(View... view) {
+        for (View v : view){
+            v.setVisibility(View.VISIBLE);
+        }
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

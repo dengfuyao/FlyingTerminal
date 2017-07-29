@@ -175,7 +175,7 @@ public class RechargeFragment extends FragmentActivity {
     private void onRechargeResult(String orderId) {
 
         String url = URLUtils.getWeCharResultUrl(orderId);
-
+        Log.e(TAG, "onRechargeResult: 充值结果查询URL::"+url );
         OkHttpUtils.get().url(url).build()
                 .execute(new StringCallback() {
                     @Override

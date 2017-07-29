@@ -48,6 +48,7 @@ public class RecordPresenterImp implements RecordPresenter<RecordBean.DataBean.D
         Log.e(TAG, "loadDataList: 获取到第 : " + offSize + "页数据");
       //  String url = Contants.URL_RECORD + mCard_no;
         String url =  URLUtils.getRecordCardUrl(String.valueOf(offSize),"10",mCard_no);
+        Log.e(TAG, "loadDataList: 骑行记录的URL ::"+url );
         OkHttpUtils
                 .get()
                 .url(url)

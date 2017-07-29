@@ -1,6 +1,5 @@
 package com.flyingogo.flyingterminal.activity;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -19,7 +18,6 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 
@@ -54,10 +52,10 @@ public class BalanceQueryActivity extends BaseActivity {
             super.handleMessage(msg);
 
             mCurrentBalance.setText(getResources().getString(R.string.current_balance) +
-                    String.valueOf(mBalanceBean.data.balance));
+                    String.valueOf(mBalanceBean.data.cardBalance));
 
             mCurrentCashPledge.setText(getResources()
-                    .getString(R.string.cash_pledge)+String.valueOf(mBalanceBean.data.deposit));
+                    .getString(R.string.cash_pledge)+String.valueOf(mBalanceBean.data.cardDeposit));
 
         }
     };
@@ -102,23 +100,14 @@ public class BalanceQueryActivity extends BaseActivity {
 
                 mBalanceBean = gson.fromJson(response.toString(), BalanceBean.class);
                 if (mBalanceBean!=null){
-                Log.e(TAG, "handleMessage: blance = " + mBalanceBean.data.balance);
+                Log.e(TAG, "handleMessage: blance = " + mBalanceBean.data.cardBalance);
                 mHandler.sendEmptyMessage(0);}
             }
         });
     }
 
-
     @OnClick(R.id.right)
     public void onClick() {
         finish();
-    }
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

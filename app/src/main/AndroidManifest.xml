@@ -59,7 +59,9 @@
         </activity>
         <activity android:name=".activity.StationInforMationActivity"/>
         <activity android:name=".activity.AbnormalActivity"/>
-        <activity android:name=".activity.UserCardActivity"/>
+        <activity android:name=".activity.UserCardActivity"
+                  android:windowSoftInputMode="stateHidden|stateAlwaysHidden"
+        />
         <activity android:name=".activity.OtherServerActivity"/>
         <activity android:name=".activity.RideRecordActivity"/>
         <!-- 卡管理 -->
