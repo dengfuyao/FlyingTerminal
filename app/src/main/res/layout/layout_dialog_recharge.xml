@@ -28,6 +28,7 @@
     <com.flyingogo.flyingterminal.weiget.CountDownView
         android:gravity="center"
         android:textSize="40sp"
+        android:textColor="@color/backToColor"
         android:id="@+id/count_down_view"
         android:layout_marginBottom="50dp"
         android:layout_alignParentBottom="true"

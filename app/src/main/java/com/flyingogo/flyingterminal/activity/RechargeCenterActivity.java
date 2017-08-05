@@ -2,7 +2,6 @@ package com.flyingogo.flyingterminal.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +14,8 @@ import com.flyingogo.flyingterminal.R;
 import com.flyingogo.flyingterminal.base.BaseActivity;
 import com.flyingogo.flyingterminal.contants.Contants;
 import com.flyingogo.flyingterminal.fragment.RechargeFragment;
-import com.flyingogo.flyingterminal.module.AliPayRechargeBean;
-import com.flyingogo.flyingterminal.module.RechargeCardBena;
+import com.flyingogo.flyingterminal.model.AliPayRechargeBean;
+import com.flyingogo.flyingterminal.model.RechargeCardBena;
 import com.flyingogo.flyingterminal.utils.URLUtils;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.Thing;
@@ -27,7 +26,6 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 
@@ -74,6 +72,7 @@ public class RechargeCenterActivity extends BaseActivity {
 
     @Override
     protected int getResLayoutID() {
+        Log.e(TAG, "getResLayoutID: 充值界面创建" );
         return R.layout.activity_recharge;
     }
 
@@ -91,47 +90,47 @@ public class RechargeCenterActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.right:
                 finish();
-
                 break;
             case R.id.alipay50:
-                requesRecharge(getAliPayUrl(mCardUid,Contants.TYPE_ALI,0.01),Contants.TYPE_ALI);
+                requesRecharge(getAliPayUrl(mCardUid, Contants.TYPE_ALI, 0.01), Contants.TYPE_ALI);
                 break;
             case R.id.alipay100:
-                requesRecharge(getAliPayUrl(mCardUid,Contants.TYPE_ALI,100),Contants.TYPE_ALI);
+                requesRecharge(getAliPayUrl(mCardUid, Contants.TYPE_ALI, 100), Contants.TYPE_ALI);
                 break;
             case R.id.alipay200:
-                requesRecharge(getAliPayUrl(mCardUid,Contants.TYPE_ALI,200),Contants.TYPE_ALI);
+                requesRecharge(getAliPayUrl(mCardUid, Contants.TYPE_ALI, 200), Contants.TYPE_ALI);
                 break;
             case R.id.alipay300:
-                requesRecharge(getAliPayUrl(mCardUid,Contants.TYPE_ALI,300),Contants.TYPE_ALI);
+                requesRecharge(getAliPayUrl(mCardUid, Contants.TYPE_ALI, 300), Contants.TYPE_ALI);
                 break;
             case R.id.weichatpay50:
 
-                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT,0.01), Contants.TYPE_WECHAT);
+                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT, 0.01), Contants.TYPE_WECHAT);
                 break;
             case R.id.weichatpay100:
-                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT,100), Contants.TYPE_WECHAT);
+                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT, 100), Contants.TYPE_WECHAT);
                 break;
             case R.id.weichatpay200:
-                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT,200), Contants.TYPE_WECHAT);
+                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT, 200), Contants.TYPE_WECHAT);
                 break;
             case R.id.weichatpay300:
-                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT,300), Contants.TYPE_WECHAT);
+                requesRecharge(getWeichatUrl(mCardUid, Contants.TYPE_WECHAT, 300), Contants.TYPE_WECHAT);
                 break;
         }
     }
 
     private static final String TAG = "RechargeCenterActivity";
 
-    private String getWeichatUrl(String cardUid,  int type,double money){
+    private String getWeichatUrl(String cardUid, int type, double money) {
         return URLUtils.getWeiChatRechargeURL(cardUid, money, type);
     }
 
-    private String getAliPayUrl(String cardUid,  int type,double money){
+    private String getAliPayUrl(String cardUid, int type, double money) {
         return URLUtils.getAliPayRechargeURL(cardUid, money, type);
     }
+
     private void requesRecharge(String url, final int type) {
-            mRlProgreess.setVisibility(View.VISIBLE);
+        mRlProgreess.setVisibility(View.VISIBLE);
         Log.e(TAG, "requesRecharge: uri==" + url);
         OkHttpUtils.get().url(url).build().execute(new StringCallback() {
             @Override
@@ -142,36 +141,38 @@ public class RechargeCenterActivity extends BaseActivity {
                 finish();
                 Toast.makeText(mContext, "网络错误,请重新操作!", Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onResponse(String response, int id) {
                 Log.e(TAG, "onResponse:  = " + response.toString());
                 Gson gson = new Gson();
-                switch (type){
+                switch (type) {
                     case Contants.TYPE_ALI:
-                        AliPayRechargeBean aliPayRechargeBean = gson.fromJson(response.toString(), AliPayRechargeBean.class);
-                        go2Activity(RechargeFragment.class,aliPayRechargeBean,Contants.ALI_REC_BEN,type);
+                        final  AliPayRechargeBean aliPayRechargeBean = gson.fromJson(response.toString(), AliPayRechargeBean.class);
+                        go2Activity(RechargeFragment.class, aliPayRechargeBean, Contants.ALI_REC_BEN, type);
                         finish();
-
                         break;
-                    case  Contants.TYPE_WECHAT:
+                    case Contants.TYPE_WECHAT:
                         final RechargeCardBena rechargeCardBena = gson.fromJson(response.toString(), RechargeCardBena.class);
                         //List<RechargeCardBena.DataBean> data = rechargeCardBena.data;
                         if (rechargeCardBena != null) {
-                                    go2Activity(RechargeFragment.class,rechargeCardBena,Contants.CORD_RECHARGE_BEAN,type);
-                                    finish();
-                                }
-
+                            go2Activity(RechargeFragment.class, rechargeCardBena, Contants.CORD_RECHARGE_BEAN, type);
+                            finish();
+                        }
                         break;
                 }
-
-
-                }
-
+            }
         });
     }
 
-   /*
+    @Override
+    protected void onDestroy() {
+
+        Log.e(TAG, "onDestroy: 充值activity销毁" );
+        super.onDestroy();
+    }
+
+
+    /*
 */
 
     /**
@@ -190,11 +191,4 @@ public class RechargeCenterActivity extends BaseActivity {
                 .build();
     }
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

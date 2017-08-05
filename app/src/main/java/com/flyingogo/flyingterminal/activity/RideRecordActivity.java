@@ -13,7 +13,7 @@ import com.flyingogo.flyingterminal.R;
 import com.flyingogo.flyingterminal.adapter.MyRecyclerViewAdapter;
 import com.flyingogo.flyingterminal.base.BaseActivity;
 import com.flyingogo.flyingterminal.contants.Contants;
-import com.flyingogo.flyingterminal.module.RecordBean;
+import com.flyingogo.flyingterminal.model.RecordBean;
 import com.flyingogo.flyingterminal.presenter.RecordPresenter;
 import com.flyingogo.flyingterminal.presenter.RecordPresenterImp;
 import com.flyingogo.flyingterminal.view.RecordView;

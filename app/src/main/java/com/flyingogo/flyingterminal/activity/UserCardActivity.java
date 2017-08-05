@@ -75,7 +75,15 @@ public class UserCardActivity extends BaseActivity {
 
         super.onInit();
     }
-   /* public static void toggleSoftInput(Context context) {
+
+    private static final String TAG = "UserCardActivity";
+
+    @Override
+    protected void onResume() {
+        Log.e(TAG, "onResume: 卡管理获取焦点" );
+        super.onResume();
+    }
+    /* public static void toggleSoftInput(Context context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(0, InputMethodManager.RESULT_UNCHANGED_HIDDEN); }
 */
@@ -139,6 +147,7 @@ public class UserCardActivity extends BaseActivity {
 
     private void showCardInfoDialog() {
         CardInfoDialog dialog = new CardInfoDialog(UserCardActivity.this);
+
         Window window = dialog.getWindow();
         window.setGravity(Gravity.CENTER);
         WindowManager m = getWindowManager();
@@ -147,6 +156,10 @@ public class UserCardActivity extends BaseActivity {
         p.width = (int) (d.getWidth() * 0.70); //宽度设置为屏幕
         p.height = (int) (d.getHeight() * 0.60);
         dialog.getWindow().setAttributes(p); //设置生效
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.setCanceledOnTouchOutside(true);
+        //NavigationBarHelp.hideNavigation(dialog);
         dialog.show();
     }
 

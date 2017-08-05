@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -23,9 +21,9 @@ import android.widget.TextView;
 import com.flyingogo.flyingterminal.R;
 import com.flyingogo.flyingterminal.contants.Contants;
 import com.flyingogo.flyingterminal.dialog.RechargeSuccessDialog;
-import com.flyingogo.flyingterminal.module.AliPayRechargeBean;
-import com.flyingogo.flyingterminal.module.RechargeCardBena;
-import com.flyingogo.flyingterminal.module.RechargeResultBean;
+import com.flyingogo.flyingterminal.model.AliPayRechargeBean;
+import com.flyingogo.flyingterminal.model.RechargeCardBena;
+import com.flyingogo.flyingterminal.model.RechargeResultBean;
 import com.flyingogo.flyingterminal.utils.NavigationBarHelp;
 import com.flyingogo.flyingterminal.utils.ThreadUtils;
 import com.flyingogo.flyingterminal.utils.URLUtils;
@@ -68,16 +66,9 @@ public class RechargeFragment extends FragmentActivity {
     @BindView(R.id.count_down)
     CountDownView mCountDown;
     private String mWechatOrderid = null, mAliPayTradeNo = null;
-
-
     private RechargeResultBean mResultBean;
     private String             orderid;
-    private Handler mHandler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-            return false;
-        }
-    });
+
 
     /**
      * 获取到点击充值
@@ -127,45 +118,49 @@ public class RechargeFragment extends FragmentActivity {
             }
         });
     }
-
+    private  boolean isLogout = false;  //标志位:是否退出程序
     private  boolean isRecharge = false; //是否充值成功;
     private Runnable mRunnable = new Runnable() {
         @Override
         public void run() {
-           a: while (!isRecharge&&mCountDown.getSecound()>5) {
-                Log.e(TAG, "run: time = " + mCountDown.getSecound());
+            whileQuery();
+        }
 
-                synchronized (this) {
-                    if (mWechatOrderid != null) {
-                        orderid = mWechatOrderid;
-                    } else if (mAliPayTradeNo != null) {
-                        orderid = mAliPayTradeNo;
-                    }
-                    if (orderid != null) {
-                        Log.e(TAG, "run: time = " + mCountDown.getSecound());
-                        onRechargeResult(orderid);  //发起请求查询充值结果;
-                        if (mResultBean != null && mResultBean.msg != null) {
+        private void whileQuery() {
+            a: while (!isRecharge&&mCountDown.getSecound()>5&&!isLogout) {
+             Log.e(TAG, "run: time = " + mCountDown.getSecound());
 
-                            ThreadUtils.onRunUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    showCardInfoDialog();
-                                    mCountDown.setVisibility(View.GONE);
-                                    mBalance.setText(mResultBean.cardBalnace+"");
-                                    mCountDown.setSecond(5);  //重新设置退出的时间;
-                                }
-                            });
-                            isRecharge = true;
-                            orderid = null;
-                        }
+             synchronized (this) {
+                 if (mWechatOrderid != null) {
+                     orderid = mWechatOrderid;
+                 } else if (mAliPayTradeNo != null) {
+                     orderid = mAliPayTradeNo;
+                 }
+                 if (orderid != null) {
+                     Log.e(TAG, "run: time = " + mCountDown.getSecound());
+                     onRechargeResult(orderid);  //发起请求查询充值结果;
+                     if (mResultBean != null && mResultBean.msg != null) {
 
-                    }
+                         ThreadUtils.onRunUiThread(new Runnable() {
+                             @Override
+                             public void run() {
+                                 showCardInfoDialog();
+                                 mCountDown.setVisibility(View.GONE);
+                                 mBalance.setText(mResultBean.cardBalnace+"");
+                                 mCountDown.setSecond(5);  //重新设置退出的时间;
+                             }
+                         });
+                         isRecharge = true;
+                         orderid = null;
+                     }
 
-                }
-               Log.e(TAG, "run: isrecharge = " +isRecharge );
-               if(!isRecharge)
-                   SystemClock.sleep(5000);
-            }
+                 }
+
+             }
+             Log.e(TAG, "run: isrecharge = " +isRecharge );
+             if(!isRecharge)
+                 SystemClock.sleep(5000);
+         }
         }
 
     };
@@ -229,6 +224,8 @@ public class RechargeFragment extends FragmentActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_abondon_rechange:
+                isLogout =  false;
+                mCountDown.stopRun();
                 finish();
                 break;
         }
@@ -250,6 +247,8 @@ public class RechargeFragment extends FragmentActivity {
 
     @Override
     protected void onDestroy() {
+        isLogout = true;
+        Log.e(TAG, "onDestroy: 结束activity");
         mCountDown.stopRun();
         super.onDestroy();
     }

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,8 +48,8 @@ public class CardManageDialog extends Dialog {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
         ButterKnife.bind(this,this);
+        cleanFocus();
 //        bt_Sub = (Button) findViewById(R.id.cardinfo_submern);
-
     }
 
     public void setUpData(int result, String message) {
@@ -73,6 +74,13 @@ public class CardManageDialog extends Dialog {
     public void onClick() {
 
         dismiss();
+    }
+    private void cleanFocus() {
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+
+        this.setCanceledOnTouchOutside(true);
     }
 
 }

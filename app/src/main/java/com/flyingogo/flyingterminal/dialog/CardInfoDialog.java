@@ -4,11 +4,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.flyingogo.flyingterminal.R;
+import com.flyingogo.flyingterminal.utils.NavigationBarHelp;
 
 /**
  * 作者：dfy on 7/7/2017 10:14
@@ -28,15 +30,18 @@ public class CardInfoDialog extends Dialog implements View.OnClickListener {
     }
 
     private void initView(Context context) {
-        // TODO Auto-generated method stub
+       // TODO Auto-generated method stub
+
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.layout_dialog_cardinfo, null);
         setContentView(v, new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
+        NavigationBarHelp.hideNavigation(v);
 //        bt_Sub = (Button) findViewById(R.id.cardinfo_submern);
         iv_close = (ImageView) findViewById(R.id.iv_close);
         iv_close.setOnClickListener(this);
+        cleanFocus();
     }
 
     @Override
@@ -51,4 +56,13 @@ public class CardInfoDialog extends Dialog implements View.OnClickListener {
                 break;
         }
     }
+
+    private void cleanFocus() {
+       this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+
+        this.setCanceledOnTouchOutside(true);
+    }
+
 }

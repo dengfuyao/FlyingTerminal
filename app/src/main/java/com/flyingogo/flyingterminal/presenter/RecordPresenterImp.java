@@ -3,7 +3,7 @@ package com.flyingogo.flyingterminal.presenter;
 import android.content.Context;
 import android.util.Log;
 
-import com.flyingogo.flyingterminal.module.RecordBean;
+import com.flyingogo.flyingterminal.model.RecordBean;
 import com.flyingogo.flyingterminal.utils.ThreadUtils;
 import com.flyingogo.flyingterminal.utils.URLUtils;
 import com.flyingogo.flyingterminal.view.RecordView;

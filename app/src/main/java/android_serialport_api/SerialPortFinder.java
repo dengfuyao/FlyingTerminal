@@ -25,6 +25,10 @@ import java.io.LineNumberReader;
 import java.util.Iterator;
 import java.util.Vector;
 
+/**
+ * 寻找串口;
+ */
+
 public class SerialPortFinder {
 
 	public class Driver {
@@ -37,7 +41,7 @@ public class SerialPortFinder {
 		Vector<File> mDevices = null;
 		public Vector<File> getDevices() {
 			if (mDevices == null) {
-				mDevices = new Vector<File>();
+				mDevices = new Vector<>();
 				File dev = new File("/dev");
 				File[] files = dev.listFiles();
 				int i;
@@ -63,22 +67,25 @@ public class SerialPortFinder {
 		if (mDrivers == null) {
 			mDrivers = new Vector<Driver>();
 			LineNumberReader r = new LineNumberReader(new FileReader("/proc/tty/drivers"));
-			String l;
-			while((l = r.readLine()) != null) {
+			String len;
+			while((len = r.readLine()) != null) {
 				// Issue 3:
 				// Since driver name may contain spaces, we do not extract driver name with split()
-				String drivername = l.substring(0, 0x15).trim();
-				String[] w = l.split(" +");
-				if ((w.length >= 5) && (w[w.length-1].equals("serial"))) {
-					Log.d(TAG, "Found new driver " + drivername + " on " + w[w.length-4]);
-					mDrivers.add(new Driver(drivername, w[w.length-4]));
+				String drivername = len.substring(0, 0x15).trim();
+				String[] buff = len.split(" +");
+				if ((buff.length >= 5) && (buff[buff.length-1].equals("serial"))) {
+					Log.d(TAG, "Found new driver " + drivername + " on " + buff[buff.length-4]);
+					mDrivers.add(new Driver(drivername, buff[buff.length-4]));
 				}
 			}
 			r.close();
 		}
 		return mDrivers;
 	}
-
+	/**
+	 * 获取所有 的出口
+	 * @return
+     */
 	public String[] getAllDevices() {
 		Vector<String> devices = new Vector<String>();
 		// Parse each driver
@@ -99,7 +106,10 @@ public class SerialPortFinder {
 		}
 		return devices.toArray(new String[devices.size()]);
 	}
-
+	/**
+	 * 获取串口路径
+	 * @return
+     */
 	public String[] getAllDevicesPath() {
 		Vector<String> devices = new Vector<String>();
 		// Parse each driver

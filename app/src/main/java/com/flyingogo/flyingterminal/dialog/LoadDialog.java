@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
@@ -36,13 +37,23 @@ public class LoadDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getDialog().setCanceledOnTouchOutside(false);
+        getDialog().setCanceledOnTouchOutside(true);
         View view = inflater.inflate(R.layout.load, container);
         Animation operatingAnim = AnimationUtils.loadAnimation(view.getContext(), R.anim.tips);
         LinearInterpolator lin = new LinearInterpolator();
         operatingAnim.setInterpolator(lin);
         ImageView iv_load = (ImageView)view.findViewById(R.id.iv_load);
         iv_load.setAnimation(operatingAnim);
+        cleanFocus();
         return view;
     }
+//
+    private void cleanFocus() {
+        getDialog().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+
+        getDialog().setCanceledOnTouchOutside(true);
+    }
+
 }

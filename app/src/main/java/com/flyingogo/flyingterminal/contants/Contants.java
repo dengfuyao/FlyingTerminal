@@ -31,5 +31,11 @@ public interface Contants {
 
     int TYPE_ALI    = 2;
     int TYPE_WECHAT = 1;
+    String TEMPERATURE = "temperature";
+
+    public class Action {
+        public static final String CARD_NO  = "card_no";
+        public static final String TEMPERATURE = "temperature";
+    }
 }
 

@@ -10,8 +10,8 @@ public class URLUtils {
     // http://14.154.31.54:8081/bus/bikeOpercteR/excuseException.do?cardNo=0000000000
 
     //http://192.168.31.76:8081/fjbike/bike/queryBikeStationByCoord.do?longitude=&latitude=&distance=100&lonDistance=1000
-    //http://
- static String Url = "http://123.207.25.39:8280/fjbike/";  //外网主地址;
+    //http://192.168.31.76
+ static String Url = "http://192.168.31.197:8081/fjbike/";  //外网主地址;
     //static String Url = "http://192.168.31.16:8080/fjbike/";
     /**
      * 异常卡处理
@@ -96,7 +96,8 @@ public class URLUtils {
 
     //http://14.154.31.54:8081/bus/bike/queryBikeStationByCoord.do?
     // longitude=116.426905&latitude=25.053924&distance=1&lonDistance=1
-
+   // http://192.168.31.76:8081/fjbike/bike/queryBikeStationByCoord.do?
+    // longitude=116.39786526560786&latitude=39.92421163425557&distance=1000&lonDistance=1000
     public static String getStationUrl(String longitude, String latitude, String distance, String lonDistance) {
         String url = Url + "bike/queryBikeStationByCoord.do?"
                 + "longitude=" + longitude

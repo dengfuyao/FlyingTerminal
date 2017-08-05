@@ -3,7 +3,7 @@
 
     <string name="hello">Hello World, ComAssistantActivity!</string>
     <string name="app_name">终端机</string>
-    <string name="current_card_no">卡号 : </string>
+    <string name="current_card_no">卡号 :</string>
     <string name="current_balance">当前余额:</string>
     <string name="cash_pledge">押金:</string>
     <string name="no_result">对不起,没有搜索到相关数据</string>

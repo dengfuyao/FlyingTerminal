@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,12 +37,21 @@ public class RechargeSuccessDialog extends Dialog {
         initView(context);
         mCountDownView.setSecond(4);
         mCountDownView.beginRun();
+        cleanFocus();  //设置dialog失去焦点;
         mCountDownView.setContDownViewListener(new CountDownView.CountDownViewListener() {
             @Override
             public void onCountDownViewListener() {
                 onDismiss();
             }
         });
+    }
+
+    private void cleanFocus() {
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+
+        this.setCanceledOnTouchOutside(true);
     }
 
     private void initView(Context context) {
@@ -58,10 +68,6 @@ public class RechargeSuccessDialog extends Dialog {
         mManageResult.setText(result);
         mRechargeBalance.setText("余额 : "+ balance + "元");
     }
-
-
-
-
     public void noNetwork() {
         mManageResult.setText("网络异常,请重新进入");
     }

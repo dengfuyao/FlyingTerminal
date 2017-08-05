@@ -68,6 +68,7 @@ public class SerialPort {
 	}
 
 	// Getters and setters
+	//获取串口输入输出流
 	public InputStream getInputStream() {
 		return mFileInputStream;
 	}
@@ -77,6 +78,14 @@ public class SerialPort {
 	}
 
 	// JNI
+
+	/**
+	 * 开启串口
+	 * @param path
+	 * @param baudrate
+	 * @param flags
+     * @return
+     */
 	private native static FileDescriptor open(String path, int baudrate, int flags);
 	public native void close();
 	static {

@@ -1,5 +1,6 @@
 package com.flyingogo.flyingterminal.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 import com.flyingogo.flyingterminal.R;
 import com.flyingogo.flyingterminal.base.BaseActivity;
 import com.flyingogo.flyingterminal.contants.Contants;
-import com.flyingogo.flyingterminal.module.BalanceBean;
+import com.flyingogo.flyingterminal.model.BalanceBean;
 import com.flyingogo.flyingterminal.utils.URLUtils;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -47,6 +48,7 @@ public class BalanceQueryActivity extends BaseActivity {
 
     BalanceBean mBalanceBean;
     Handler mHandler = new Handler() {
+        @SuppressLint("SetTextI18n")
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);

@@ -12,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.flyingogo.flyingterminal.R;
 import com.flyingogo.flyingterminal.utils.NavigationBarHelp;
@@ -28,13 +27,8 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     private MediaPlayer   mMediaPlayer;
     private SurfaceView   mSurfaceView;
     private SurfaceHolder mHolder;
-
     private static final String TAG = "VideoPlayerActivity";
-    private TextView mCurrent_index;
     private Uri      mUri;
-    private String mUrl;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,18 +43,13 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
 
     private void setAudio() {
 
-
         AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-
 
                  //设置静音模式;
                    audioManager.setStreamMute(AudioManager.STREAM_MUSIC , true);
 
-
                   //启动声音调节默认有声音;
                     //audioManager.setStreamMute(AudioManager.STREAM_MUSIC , false);
-
-
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

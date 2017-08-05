@@ -1,15 +1,21 @@
 package com.flyingogo.flyingterminal.activity;
 
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -18,7 +24,10 @@ import android.widget.Toast;
 
 import com.flyingogo.flyingterminal.R;
 import com.flyingogo.flyingterminal.base.BaseActivity;
+import com.flyingogo.flyingterminal.contants.Contants;
+import com.flyingogo.flyingterminal.popwindow.SelectPopupWindow;
 import com.flyingogo.flyingterminal.utils.NavigationBarHelp;
+import com.flyingogo.flyingterminal.utils.ThreadUtils;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -36,7 +45,8 @@ import butterknife.OnClick;
  * 邮箱：dengfuyao@163.com
  */
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements SelectPopupWindow.OnPopWindowClickListener{
+    private SelectPopupWindow menuWindow;
     private static final String TAG = "MainActivity";
 
     @BindView(R.id.image_icon)
@@ -61,17 +71,58 @@ public class MainActivity extends BaseActivity {
     LinearLayout   mLlNews;
     @BindView(R.id.activity_main)
     LinearLayout   mActivityMain;
-    @BindView(R.id.logout)
-    Button         mLogout;
     @BindView(R.id.text_time)
     TextView       mTextTime;
+    @BindView(R.id.logout)
+    ImageView      mLogout;
 
     private GoogleApiClient mClient;
+    private LocalBroadcastManager mLocalBroadcastManager;
+    private IntentFilter mIntentFilter;
+
 
 
     @Override
     protected int getResLayoutID() {
         return R.layout.activity_main;
+    }
+
+
+
+    //打开输入密码的对话框
+    public void inoutPsw(){
+
+        if (menuWindow==null)
+        menuWindow = new SelectPopupWindow(this, this);
+        Rect rect = new Rect();
+        getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        int winHeight = getWindow().getDecorView().getHeight();
+        menuWindow.showAtLocation(getWindow().getDecorView(), Gravity.BOTTOM, 0, winHeight - rect.bottom);
+        ThreadUtils.onRunUiThread(new Runnable() {
+            @Override
+            public void run() {
+                NavigationBarHelp.hideNavigation(MainActivity.this);
+            }
+        });
+    }
+    @Override
+    public void onPopWindowClickListener(String psw, boolean complete) {
+        if(complete){
+            if (psw.toString().trim().equalsIgnoreCase("666666")){
+                finish();
+            }
+            Toast.makeText(this, "密码不正确"+psw, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        Log.e(TAG, "onResume: main获取焦点" );
+        if (mLocalBroadcastManager==null) {
+            mLocalBroadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
+        }
+        mLocalBroadcastManager.registerReceiver(serialReceiver, getIntentFilter());
+        super.onResume();
     }
 
     @TargetApi(Build.VERSION_CODES.N)
@@ -88,7 +139,26 @@ public class MainActivity extends BaseActivity {
         new TimeThread().start();
     }
 
-    @OnClick({R.id.ll_refer_station, R.id.ll_balance_card, R.id.ll_rechange_centre, R.id.ll_other, R.id.logout,R.id.activity_main})
+    private BroadcastReceiver serialReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Log.e(TAG, "onReceive: action = "+action );
+          if (action.equalsIgnoreCase(Contants.Action.TEMPERATURE)){
+              final String temperatures = intent.getStringExtra(Contants.TEMPERATURE);
+              Log.e(TAG, "onReceive: temperature = "+temperatures );
+              final int temperature = Integer.parseInt(temperatures, 16);
+              runOnUiThread(new Runnable() {
+                  @Override
+                  public void run() {
+                      mTvControlCelsius.setText(temperature+"℃");
+                  }
+              });
+          }
+        }
+    };
+
+    @OnClick({R.id.ll_refer_station, R.id.ll_balance_card, R.id.ll_rechange_centre, R.id.ll_other, R.id.logout, R.id.activity_main})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_refer_station:  //站点查询
@@ -99,19 +169,21 @@ public class MainActivity extends BaseActivity {
                 toActivity(UserCardActivity.class);
                 break;
             case R.id.ll_rechange_centre:  //充值中心;
-                toActivity(RechargeCenterActivity.class);
+              //  toActivity(RechargeCenterActivity.class);
                 // TODO: 26/7/2017 连接单片机时读卡
-                //  toActivity(ComAssistantActivity.class);
+               //  toActivity(ComAssistantActivity.class);
+                toActivity(RechargerActivity.class);
                 break;
             case R.id.ll_other:         //其他服务
-                toActivity(OtherServerActivity.class);
+                toActivity(ServerCenterActivity.class);
                 break;
             case R.id.logout:
-                mLogout.setVisibility(View.INVISIBLE);
-                finish();
+                NavigationBarHelp.hideNavigation(this);
+                inoutPsw();
+
                 break;
             case R.id.activity_main:
-               // if ()
+                // if ()
 
         }
     }
@@ -177,6 +249,14 @@ public class MainActivity extends BaseActivity {
         mClient.disconnect();
     }
 
+    public IntentFilter getIntentFilter() {
+        if (mIntentFilter==null) {
+            mIntentFilter = new IntentFilter();
+            mIntentFilter.addAction(Contants.Action.TEMPERATURE);
+        }
+        return mIntentFilter;
+    }
+
     public class TimeThread extends Thread {
         @Override
         public void run() {
@@ -231,6 +311,9 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private int count = 0;
-
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(serialReceiver);
+        super.onDestroy();
+    }
 }

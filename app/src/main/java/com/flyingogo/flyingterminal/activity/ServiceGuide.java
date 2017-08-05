@@ -12,7 +12,6 @@ import butterknife.OnClick;
 
 public class ServiceGuide extends BaseActivity {
 
-
     @BindView(R.id.webView)
     WebView        mWebView;
     @BindView(R.id.right)
@@ -25,7 +24,8 @@ public class ServiceGuide extends BaseActivity {
     @Override
     protected void onInit() {
         // http://www.nnggzxc.com/upload/vido/ridelybike.mp4
-        String url = "http://www.nnggzxc.com/Home/PageList?gty=e1";
+      //  http://180.141.89.241:8860/lyBikeSideMap.aspx
+        String url = "http://180.141.89.241:8860/lyBikeSideMap.aspx";
         mWebView.loadUrl(url);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new WebViewClient() {

@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.flyingogo.flyingterminal.module.RecordBean;
+import com.flyingogo.flyingterminal.model.RecordBean;
 import com.flyingogo.flyingterminal.weiget.RecordsView;
 
 import java.util.List;

@@ -59,10 +59,10 @@
         </activity>
         <activity android:name=".activity.StationInforMationActivity"/>
         <activity android:name=".activity.AbnormalActivity"/>
-        <activity android:name=".activity.UserCardActivity"
-                  android:windowSoftInputMode="stateHidden|stateAlwaysHidden"
-        />
-        <activity android:name=".activity.OtherServerActivity"/>
+        <activity
+            android:name=".activity.UserCardActivity"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"/>
+        <activity android:name=".activity.ServerCenterActivity"/>
         <activity android:name=".activity.RideRecordActivity"/>
         <!-- 卡管理 -->
         <activity android:name=".activity.CardManageActivity"/>
@@ -72,7 +72,6 @@
         <service android:name="com.amap.api.location.APSService"/>
 
         <activity android:name=".activity.VideoPlayerActivity"/>
-        <activity android:name=".activity.ComAssistantActivity"/>
         <activity android:name=".fragment.RechargeFragment"/>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -84,9 +83,12 @@
 
         <activity android:name=".activity.BalanceQueryActivity">
         </activity>
-        <activity android:name=".activity.VideoPlayer">
-        </activity>
         <activity android:name=".activity.ServiceGuide">
+        </activity>
+
+        <service android:name=".service.SerialPortService"/>
+
+        <activity android:name=".activity.RechargerActivity">
         </activity>
     </application>
 

@@ -28,14 +28,11 @@
                 android:padding="3.0dip"
                 android:src="@drawable/title_bar"/>
         </RelativeLayout>
-        <Button
-            android:visibility="invisible"
-            android:text="退出系统"
-            android:background="@drawable/bt_rechange_bg_select"
-            android:layout_marginTop="30dp"
+        <ImageView
             android:id="@+id/logout"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"/>
+            android:src="@drawable/logout"
+            android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
         <LinearLayout
             android:orientation="vertical"
             android:gravity="center"
@@ -241,7 +238,7 @@
                     android:layout_weight="1.0"
                     android:gravity="center|left"
                     android:text="23C"
-                    android:textSize="10.0sp"/>
+                    android:textSize="18.0sp"/>
             </LinearLayout>
             <LinearLayout
 

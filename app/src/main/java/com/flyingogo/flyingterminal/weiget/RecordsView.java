@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.flyingogo.flyingterminal.R;
-import com.flyingogo.flyingterminal.module.RecordBean;
+import com.flyingogo.flyingterminal.model.RecordBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
