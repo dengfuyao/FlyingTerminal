@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
 
+import com.flyingogo.flyingterminal.Exception.CrashHandlerRestart;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -35,6 +36,7 @@ public class Myplication extends Application {
     public void onCreate() {
         super.onCreate();
         initOkHttpUtils();
+
 
     }
 

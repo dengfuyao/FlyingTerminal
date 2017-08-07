@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.flyingogo.flyingterminal.Exception.CrashHandlerRestart;
 import com.flyingogo.flyingterminal.activity.VideoPlayerActivity;
 import com.flyingogo.flyingterminal.contants.Contants;
 import com.flyingogo.flyingterminal.service.SerialPortService;
@@ -50,14 +51,27 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);// 横屏
-        //setRequestedOrientation(ActivityInfo .SCREEN_ORIENTATION_PORTRAIT);//竖屏
+        //setRequestedOrientation(ActivityInfo .SCREEN_ORIENTATION_PORTRAIT;//竖屏
         setContentView(getResLayoutID());
+
+        exceptionDialog();
+
         mContext = getApplicationContext();
         ButterKnife.bind(this);
         onInitMap(savedInstanceState);
         onInit();
         mIntent = new Intent(this, SerialPortService.class);
         startService(mIntent);
+    }
+
+    /**
+     * 出现异常崩溃自动重启系统;
+     */
+    private void exceptionDialog() {
+       /* CrashHandler catchHandler = CrashHandler.getInstance();
+        catchHandler.init(getApplicationContext());*/
+        CrashHandlerRestart crashHandlerRestart = CrashHandlerRestart.getInstance();
+        crashHandlerRestart.init(getApplicationContext());
     }
 
     @Override

@@ -21,6 +21,8 @@ import com.flyingogo.flyingterminal.base.BaseActivity;
 import com.flyingogo.flyingterminal.contants.Contants;
 import com.flyingogo.flyingterminal.dialog.CardInfoDialog;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -60,6 +62,7 @@ public class UserCardActivity extends BaseActivity {
 
     @Override
     protected int getResLayoutID() {
+
         return R.layout.balance_card_activity;
     }
 

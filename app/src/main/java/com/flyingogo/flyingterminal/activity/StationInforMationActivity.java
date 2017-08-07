@@ -154,7 +154,6 @@ public class StationInforMationActivity extends BaseActivity implements AMapLoca
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         mWidth = dm.widthPixels;
         mHeight = dm.heightPixels;
-
         initMap();
 
         initMarkerMap();  //初始化图片
@@ -585,11 +584,12 @@ public class StationInforMationActivity extends BaseActivity implements AMapLoca
     public boolean onMarkerClick(final Marker marker) {
         //market点击时候调用;
      /*   movingMark.setToTop();
-        marker.setBelowMaskLayer(true);
+
         mCurShowWindowMarker = marker;
         return false;*/
 // TODO: 31/7/2017 更改了调用点击弹窗的位置,;
         marker.showInfoWindow();
+        marker.setBelowMaskLayer(true);
         ArrayList<BitmapDescriptor> icons = marker.getIcons();
         if (icons.size() > 0) {
             mClickIcon = icons.get(0);
@@ -788,7 +788,6 @@ public class StationInforMationActivity extends BaseActivity implements AMapLoca
     public void onRideRouteSearched(RideRouteResult rideRouteResult, int i) {
 
     }
-
 
 }
 

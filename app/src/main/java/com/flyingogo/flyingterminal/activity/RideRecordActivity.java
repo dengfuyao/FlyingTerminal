@@ -55,6 +55,7 @@ public class RideRecordActivity extends BaseActivity implements RecordView{
     @Override
     protected void onInit() {
         super.onInit();
+
         Intent intent = getIntent();
         mCard_no = intent.getStringExtra(Contants.CARD_NO);
         mPresenter = new RecordPresenterImp(mContext,this,mCard_no);
